@@ -57,8 +57,10 @@ for user in user_sorted
   end
 end
 
-
-puts results
+for result in results
+  puts "#{result[:name]}'s KelloggCoin balance is #{result[:value]}"
+end
+  
 
 
 
