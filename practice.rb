@@ -27,3 +27,39 @@ blockchain = [
 # Anthony's KelloggCoin balance is 2650
 
 # 👇👇👇 Your code HERE 👇👇👇
+
+users = []
+for block in blockchain
+  if (block[:from_user] != nil)
+    users.push({"name": block[:from_user], "value": -block[:amount]})
+  end
+  if (block[:to_user] != nil)
+    users.push({"name": block[:to_user], "value": block[:amount]})
+  end
+end
+
+user_sorted = users.sort_by { |x| x[:name] }
+
+results = []
+prev = ""
+value = 0
+counter = 0
+for user in user_sorted
+  counter = counter + 1
+  if prev != user[:name] or user_sorted.count == counter
+    if prev != ""
+      results.push({"name": prev, "value": value})
+    end
+    prev = user[:name]
+    value = user[:value]
+  else
+    value = value + user[:value]
+  end
+end
+
+
+puts results
+
+
+
+
